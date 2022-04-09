@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no">
+    <!-- width=device-width, initial-scale=1.0 -->
     <link rel="preload" href="/assets/css/style.min.css" as="style">
     <link rel="stylesheet" href="/assets/css/style.min.css">
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
@@ -27,21 +29,306 @@
             <div class="main__info">
                 <div class="digital">
                     <div class="title">На вашем банковском счете:</div>
-                    <div class="number">1 234 592 ₽</div>
+                    <div class="number">1 234 592 $</div>
                 </div>
                 <div class="cash">
                     <div class="title">Наличными:</div>
-                    <div class="number">5 592 ₽</div>
+                    <div class="number">5 592 $</div>
                 </div>
             </div>
-            <button class="back">
+            <!-- hide when main screen -->
+            <button class="back hide" onclick="backToMenu()">
                 <img src="./assets/img/arrow-icon__l_w.png" alt="arrow">
                 <p>Назад</p>
             </button>
             <div class="main__interaction">
-                <div class="title">
-                    Снятие наличных
+                <div id="nav" class="block main active">
+                    <button id="refill">
+                        <img src="./assets/img/main/plus.png" alt="">
+                        <p>ПОПОЛНИТЬ</p>
+                    </button>
+                    <button id="transaction">
+                        <img src="./assets/img/main/share.png" alt="">
+                        <p>ПЕРЕВОД ПО СЧЁТУ</p>
+                    </button>
+                    <button id="withdrawal">
+                        <img src="./assets/img/main/minus.png" alt="">
+                        <p>СНЯТЬ</p>
+                    </button>
+                    <button id="withdbusines">
+                        <img src="./assets/img/main/minus.png" alt="">
+                        <p>СНЯТЬ СО СЧЕТА БИЗНЕСА</p>
+                    </button>
+                    <button id="payment-prop">
+                        <img src="./assets/img/main/walet.png" alt="">
+                        <p>Оплатить недвижимость</p>
+                    </button>
+                    <button id="payment-penalty">
+                        <img src="./assets/img/main/walet.png" alt="">
+                        <p>Оплатить ШТРАФЫ</p>
+                    </button>
+                    <button id="payment-tax">
+                        <img src="./assets/img/main/walet.png" alt="">
+                        <p>ОПЛАТИТЬ НАЛОГИ </p>
+                    </button>
+                    <button id="history">
+                        <img src="./assets/img/main/time.png" alt="">
+                        <p>ИСТОРИЯ ОПЕРАЦИЙ</p>
+                    </button>
                 </div>
+                <!-- refill -->
+                <div class="block refill">
+                    <div class="step step_1 ">
+                        <div class="title">
+                            Пополнение счёта
+                        </div>
+                        <input type="number" name="" id="" placeholder="Введите сумму для пополнения">
+                        <p class="hint">Максимум 5 592 $</p>
+                        <button class="main-btn" onclick="openStep('refill', 2);">Внести</button>
+                    </div>                    
+                    <div class="step step_2">
+                        <div class="title">Счёт успешно пополнен!</div>
+                        <img src="./assets/img/operation_done.png" alt="done">
+                    </div>
+                </div>
+                <!-- transaction -->
+                <div class="block transaction">
+                    <div class="step step_1 ">
+                        <div class="title">
+                            Перевод по счёту
+                        </div>
+                        <input type="number" name="" id="" placeholder="0000000">
+                        <p class="hint">Номер счета получателя</p>
+                        <button class="main-btn" onclick="openStep('transaction', 2);">Перевести</button>
+                    </div>                    
+                    <div class="step step_2">
+                        <div class="title">Перевод успешно выполнен!</div>
+                        <img src="./assets/img/operation_done.png" alt="done">
+                    </div>
+                </div>
+                <!-- withdrawal -->
+                <div class="block withdrawal ">
+                    <div class="step step_1 ">
+                        <div class="title">
+                            Снятие наличных
+                        </div>
+                        <input type="number" name="" id="" placeholder="Введите сумму для снятия">
+                        <p class="hint">Максимум 1 234 592 $</p>
+                        <button class="main-btn" onclick="openStep('withdrawal', 2);">Снять</button>
+                    </div>                    
+                    <div class="step step_2">
+                        <div class="title">Наличные успешно сняты!</div>
+                        <img src="./assets/img/operation_done.png" alt="done">
+                    </div>
+                </div>
+                <!-- withdbusiness-->
+                <div class="block withdbusines">
+                    <div class="step step_1">
+                        <div class="title">
+                            Снятие со счёта бизнеса
+                        </div>
+                        <div class="text__help">
+                            Выберите бизнес, с которого хотите снять деньги:
+                        </div>
+                        <div class="business__block" onclick="openStep('withdbusines', 2);">
+                            <p>LS Customs</p>
+                            <img src="./assets/img/arrow-icon__r_b.png" alt="arrow">
+                            <p class="good">на счету 23 453 $</p>
+                        </div>
+                        <div class="business__block" onclick="openStep('withdbusines', 2);">
+                            <p>АЗС LS</p>
+                            <img src="./assets/img/arrow-icon__r_b.png" alt="arrow">
+                            <p class="good">на счету 54 253 $</p>
+                        </div>
+                    </div>                    
+                    <div class="step step_2">
+                        <div class="title">На счету вашего бизнеса LS Custom:</div>
+                        <div class="money">23 453 $</div>
+                        <input type="number" name="" id="" placeholder="Введите сумму для снятия">
+                        <p class="hint">Максимум 23 453 $</p>
+                        <button class="main-btn" onclick="openStep('withdbusines', 3);">Снять</button>
+                    </div>
+                    <div class="step step_3">
+                        <div class="title short">Сумма успешно снята и
+                            начислена на ваш
+                            банковский счёт!</div>
+                        <img src="./assets/img/operation_done.png" alt="done">
+                    </div>
+                </div>
+                <!-- payment-prop -->
+                <div class="block payment-prop">
+                    <div class="step step_1">
+                        <div class="title">
+                            Оплата недвижимости
+                        </div>
+                        <div class="text__help">
+                            Выберите недвижимость, которую хотите оплатить
+                        </div>
+                        <div class="business__block" onclick="openStep('payment-prop', 2);">
+                            <p>Aparts #1</p>
+                            <img src="./assets/img/arrow-icon__r_b.png" alt="arrow">
+                            <p class="good">на счету 4 453 $, осталось 63 дня</p>
+                        </div>
+                        <div class="business__block" onclick="openStep('payment-prop', 2);">
+                            <p>Aparts #2</p>
+                            <img src="./assets/img/arrow-icon__r_b.png" alt="arrow">
+                            <p class="bad">на счету 253 $, осталось 2 дня</p>
+                        </div>
+                    </div>                    
+                    <div class="step step_2">
+                        <div class="title">Недвижимость Aparts #1 </div>
+                        <div class="property-money">
+                            <div class="item now">
+                                <p>Сейчас на счету</p>
+                                <p class="number">4 453 $</p>
+                            </div>
+                            <div class="item">
+                                <p>Стоимость в день </p>
+                                <p class="number bad">67 $</p>
+                            </div>
+                            <div class="item">
+                                <p>Оталось дней </p>
+                                <p class="number good">63 $</p>
+                            </div>
+                            <div class="hint bad">
+                                <p>В случае, если на вашем счету не будет необходимой суммы для оплаты 
+                                    недвижимости, она конфискуется банком!</p>
+                            </div>
+                        </div>
+                        <input type="number" name="" id="" placeholder="Введите сумму для внесения">                        
+                        <button class="main-btn" onclick="openStep('payment-prop', 3);">Внести</button>
+                    </div>
+                    <div class="step step_3">
+                        <div class="title">Оплата недвижимости успешно совершена!</div>
+                        <div class="past-days">
+                            <p class="grey">Оталось дней</p>
+                            <p class="green">126 $</p>
+                        </div>
+                        <img src="./assets/img/operation_done.png" alt="done">
+                    </div>
+                </div>
+                <!-- payment-penalty -->
+                <div class="block payment-penalty">
+                    <div class="step step_1">                        
+                        <div class="title">
+                            <img src="./assets/img/lspd__icon.png" alt="police" class="logo">
+                            Оплата штрафов
+                        </div>
+                        <div class="text__help">
+                            Выберите штраф, который хотите оплатить
+                        </div>
+                        <div class="business__block" onclick="openStep('payment-penalty', 2);">
+                            <p>Превышение скорости</p>
+                            <img src="./assets/img/arrow-icon__r_b.png" alt="arrow">
+                            <p class="bad">500 $</p>
+                        </div>
+                        <div class="business__block" onclick="openStep('payment-penalty', 2);">
+                            <p>Превышение скорости</p>
+                            <img src="./assets/img/arrow-icon__r_b.png" alt="arrow">
+                            <p class="bad">500 $</p>
+                        </div>
+                        <div class="business__block" onclick="openStep('payment-penalty', 2);">
+                            <p>Превышение скорости</p>
+                            <img src="./assets/img/arrow-icon__r_b.png" alt="arrow">
+                            <p class="bad">500 $</p>
+                        </div>
+                    </div>                    
+                    <div class="step step_2">
+                        <div class="title">
+                            <img src="./assets/img/lspd__icon.png" alt="police" class="logo">
+                            Штраф за превышение скорости
+                        </div>
+                        <div class="payment-about">
+                            <p>Сумма к оплате</p>
+                            <p class="bad">500 $</p>
+                        </div>
+                        <button class="main-btn" onclick="openStep('payment-penalty', 3);">Снять</button>
+                        <div class="hint">
+                            <p>Сумма будет списана с вашего банковского счёта</p>
+                        </div>
+                    </div>
+                    <div class="step step_3">
+                        <div class="title">Штраф(ы) успешно оплачен(ы)!</div>
+                        <img src="./assets/img/operation_done.png" alt="done">
+                    </div>
+                </div>
+                <!-- payment-tax -->
+                <div class="block payment-tax">
+                    <div class="step step_1">                        
+                        <div class="title reverse">                            
+                            Оплата налогов
+                            <img src="./assets/img/taxcontrol__icon.png" alt="police" class="logo">
+                        </div>
+                        <div class="text__help">
+                            Выберите налог, который хотите оплатить
+                        </div>
+                        <div class="business__block" onclick="openStep('payment-tax', 2);">
+                            <p>Налог на автомобиль</p>
+                            <img src="./assets/img/arrow-icon__r_b.png" alt="arrow">
+                            <p class="bad">2500 $</p>
+                        </div>                        
+                    </div>                    
+                    <div class="step step_2">
+                        <div class="title reverse">                            
+                            Оплата налогов
+                            <img src="./assets/img/taxcontrol__icon.png" alt="police" class="logo">
+                        </div>                            
+                        <div class="payment-subtitle">
+                            Налог на автомобиль
+                        </div>
+                        <div class="payment-about">                            
+                            <p>Сумма к оплате</p>
+                            <p class="bad">500 $</p>
+                        </div>
+                        <button class="main-btn" onclick="openStep('payment-tax', 3);">Снять</button>
+                        <div class="hint">
+                            <p>Сумма будет списана с вашего банковского счёта</p>
+                        </div>
+                    </div>
+                    <div class="step step_3">
+                        <div class="title">Налог успешно оплачен!</div>
+                        <img src="./assets/img/operation_done.png" alt="done">
+                    </div>
+                </div>
+                <!-- history -->
+                <div class="block history">
+                    <div class="title">История операций</div>
+                    <div class="item">
+                        <div class="item__title">
+                            <p class="good">Пополнение</p>
+                            <p class="small">Внесения наличных</p>
+                        </div>
+                        <div class="item__number">500 $</div>
+                    </div>
+                    <div class="item">
+                        <div class="item__title">
+                            <p class="bad">Списание</p>
+                            <p class="small">Оплата штрафов</p>
+                        </div>
+                        <div class="item__number">1500 $</div>
+                    </div>
+                    <div class="item">
+                        <div class="item__title">
+                            <p class="medium">Перевод</p>
+                            <p class="small">На лицевой счет</p>
+                        </div>
+                        <div class="item__number">500 $</div>
+                    </div>
+                    <div class="item">
+                        <div class="item__title">
+                            <p class="good">Пополнение</p>
+                            <p class="small">Внесения наличных</p>
+                        </div>
+                        <div class="item__number">500 $</div>
+                    </div>
+                    <div class="item">
+                        <div class="item__title">
+                            <p class="bad">Списание</p>
+                            <p class="small">Оплата штрафов</p>
+                        </div>
+                        <div class="item__number">1500 $</div>
+                    </div>
+                </div>               
             </div>
         </div>
         <div class="footer">
