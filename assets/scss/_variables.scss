@@ -1,19 +1,27 @@
 :root {
-    // Main
-    --main__color-grey: rgba(230, 230, 230, 1); //#E6E6E6
-    --main__color-blue: rgba(26, 49, 102, 1); //#1A3166
-  
-    // Text
-    --main__text-font: "Play", sans-serif;  
+  // Main
+  --main__color-grey: rgba(230, 230, 230, 1); //#E6E6E6
+  --main__color-blue: rgba(26, 49, 102, 1); //#1A3166
+  // Text
+  --main__text-font: "Play", sans-serif;
 
-  
-    @media all and (max-width: 1199px) {
-      // Main
-      --block__border-radius: 25px;
-  
-      // Header
-      --nav__height: 90px;
-      --header__height: 80px;
-  
-    }
+  @media all and (max-width: 1199px) {
+    // Main
+    --block__border-radius: 25px;
+
+    // Header
+    --nav__height: 90px;
+    --header__height: 80px;
   }
+}
+$mainFontSize: 16px;
+
+@function rem($pixels, $context: $mainFontSize) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+  @return $pixels / $context * 1rem;
+}
